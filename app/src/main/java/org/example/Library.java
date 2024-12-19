@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 
-// Class to represent a library containing books
+// Class to show a library containing books
 public class Library {
     private final ArrayList<Book> books;
 
@@ -22,7 +22,7 @@ public class Library {
         return books.removeIf(book -> book.title().equals(title));
     }
 
-    // Method to find a book in the library by title
+    // Method used to find a book in the library by title
     public Book findBookByTitle(String title) {
         for (Book book : books) {
             if (book.title().equals(title)) {
@@ -33,7 +33,7 @@ public class Library {
     }
 
 
-    // Method to list only book titles with numbering
+    // Method used to list only book titles with numbering
     public void listBooks() {
         if (books.isEmpty()) {
             System.out.println("No books available.");
@@ -46,7 +46,7 @@ public class Library {
         }
     }
 
-    // Method to list book titles and years with numbering
+    // Method used to list book titles and years with numbering
     public void listBooksTitlesAndYears() {
         if (books.isEmpty()) {
             System.out.println("No books available.");

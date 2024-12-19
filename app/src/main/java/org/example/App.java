@@ -6,16 +6,16 @@ public class App {
         Library library = new Library();
 
         // Adding books to the library
-        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
-        library.addBook(new Book("A Contemporary Confessions for Modern Gnostics", "Dylan Pahman", 2024));
-        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
-        library.addBook(new Book("The Third Policeman", "Flann O'Brien", 1967));
-        library.addBook(new Book("Towards Colonial Freedom: Africa in the Struggle Against World Imperialism", "Kwame Nkrumah", 1969));
+        library.addBook(new Book("Pride and Prejudice", "Jane Austen",  1813));
+        library.addBook(new Book("Moby-Dick", "Herman Melville", 1851));
+        library.addBook(new Book("TThe Road", "Cormac McCarthy", 2006));
+        library.addBook(new Book("The Kite Runnern", "Khaled Hosseini", 2003));
+        library.addBook(new Book("The Book Thief", "Markus Zusak", 2005));
 
 
         String star = "******************************";
 
-        // Displaying the list of books in the library
+        //Showing the list of books in the library
         System.out.println(star);
         System.out.println("       Books in the Library");
         System.out.println(star);
@@ -25,29 +25,29 @@ public class App {
         // Creating a patron and borrowing a book
         Patron patron = new Patron("Francis Siripi ", 142625);
 
-        Book bookToBorrow = library.findBookByTitle("To Kill a Mockingbird");
+        Book bookToBorrow = library.findBookByTitle("The Book Thief");
         patron.borrowBook(bookToBorrow, library);
         System.out.println();
 
-        // Displaying the list of borrowed books
+        // Showing the list of borrowed books
         System.out.println(star);
         System.out.println("   Borrowed Books");
         System.out.println(star);
         patron.listBorrowedBooks();
         System.out.println();
 
-        // Returning the borrowed book
+        // Returning the  book that was borrowed
         patron.returnBook(bookToBorrow, library);
         System.out.println();
 
-        // Displaying the list of books in the library after operations
+        // Showing the list of books in the library after operations
         System.out.println(star);
         System.out.println("Books in the Library After Operations");
         System.out.println(star);
         library.listBooks();
         System.out.println();
 
-        // Displaying the detailed list of books with titles and years
+        // Showing the detailed list of books with titles and years
         System.out.println(star);
         System.out.println("   Detailed List of Books");
         System.out.println(star);
