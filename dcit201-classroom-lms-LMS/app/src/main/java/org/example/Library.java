@@ -1,56 +1,62 @@
+
 package org.example;
+
 import java.util.ArrayList;
-import java.util.List;
 
+// Class to represent a library containing books
 public class Library {
+    private final ArrayList<Book> books;
 
-    private String name;
-    private List<Book> books;
-    private List<Patron> patrons;
 
-    public Library(String name) {
-        this.name = name;
-        this.books = new ArrayList<>();
-        this.patrons = new ArrayList<>();
+    // Constructor to initialize the books list
+    public Library() {
+        books = new ArrayList<>();
     }
 
+    // Method to add a book to the library
     public void addBook(Book book) {
         books.add(book);
     }
 
-    public void registerPatron(Patron patron) {
-        patrons.add(patron);
+    // Method to remove a book from the library by title
+    public boolean removeBook(String title) {
+        return books.removeIf(book -> book.title().equals(title));
     }
 
-    public void borrowBook(String title, Patron patron) {
+    // Method to find a book in the library by title
+    public Book findBookByTitle(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title) && book.isAvailable()) {
-                book.borrowBook();
-                patron.borrowBook(book);
-                System.out.println("Book borrowed successfully.");
-                return;
+            if (book.title().equals(title)) {
+                return book;
             }
         }
-        System.out.println("Book not available or not found.");
+        return null;
     }
 
-    public void returnBook(String title) {
-        for (Book book : books) {
-            if (book.getTitle().equals(title) && !book.isAvailable()) {
-                book.returnBook();
-                System.out.println("Book returned successfully.");
-                return;
+
+    // Method to list only book titles with numbering
+    public void listBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+        } else {
+            int counter = 1;
+            for (Book book : books) {
+                System.out.println(counter + "." + book.title());
+                counter++;
             }
         }
-        System.out.println("Book not found or already returned.");
     }
 
-    public List<Book> getAvailableBooks() {
-        List<Book> availableBooks = new ArrayList<>();
-        for (Book book : books) {
-            if (book.isAvailable()) {
-                availableBooks.add(book);
+    // Method to list book titles and years with numbering
+    public void listBooksTitlesAndYears() {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+        } else {
+            int counter = 1;
+            for (Book book : books) {
+                System.out.println(counter + "." + book.title() + " (" + book.yearPublished() + ")");
+                counter++;
             }
         }
-        return availableBooks;
-    }}
+    }
+}
