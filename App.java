@@ -1,55 +1,47 @@
+/*
+ * This should be your main class where all your objects will be created
+ */
 package org.example;
 
 public class App {
+    public String getGreeting() {
+        return "Hello World!";
+    }
+
     public static void main(String[] args) {
-        Library library = new Library();
+        System.out.println(new App().getGreeting());
+
+        Library library = new Library("City Library");
 
         // Adding books to the library
-        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
-        library.addBook(new Book("A Contemporary Confessions for Modern Gnostics", "Dylan Pahman", 2014));
-        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
-        library.addBook(new Book("The Third Policeman", "Flann O'Brien", 1967));
-        library.addBook(new Book("Towards Colonial Freedom: Africa in the Struggle Against World Imperialism", "Kwame Nkrumah", 1969));
-        library.addBook(new Book("Contemporary Confessions ", "Dylan Pahman", 2014));
-        
-        String star = "******************************";
+        Book book1 = new Book("Java Programming", "John Doe", 1949);
+        Book book2 = new Book("Effective Java", "Joshua Bloch", 1949);
+        Book book3 = new Book("Clean Code", "Robert C. Martin", 1949);
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
 
-        // Displaying the list of books in the library
-        System.out.println(star);
-        System.out.println("       Books in the Library");
-        System.out.println(star);
-        library.listBooks();
-        System.out.println();
+        // Registering a patron
+        Patron patron = new Patron("Alice", "P001");
+        library.registerPatron(patron);
 
-        // Creating a patron and borrowing a book
-        Patron patron = new Patron("Kwaku amane", 1001);
+        // Patron borrows a book
+        library.borrowBook("Java Programming", patron);
 
-        Book bookToBorrow = library.findBookByTitle("To Kill a Mockingbird");
-        patron.borrowBook(bookToBorrow, library);
-        System.out.println();
+        // Display borrowed books for the patron
+        System.out.println("Borrowed books by Alice:");
+        for (Book b : patron.getBorrowedBooks()) {
+            System.out.println(b.getTitle());
+        }
 
-        // Displaying the list of borrowed books
-        System.out.println(star);
-        System.out.println("   Borrowed Books");
-        System.out.println(star);
-        patron.listBorrowedBooks();
-        System.out.println();
+        // Patron returns a book
+        library.returnBook("Java Programming");
 
-        // Returning the borrowed book
-        patron.returnBook(bookToBorrow, library);
-        System.out.println();
-
-        // Displaying the list of books in the library after operations
-        System.out.println(star);
-        System.out.println("Books in the Library After Operations");
-        System.out.println(star);
-        library.listBooks();
-        System.out.println();
-
-        // Displaying the detailed list of books with titles and years
-        System.out.println(star);
-        System.out.println("   Detailed List of Books");
-        System.out.println(star);
-        library.listBooksTitlesAndYears();
+        // Display available books in the library
+        System.out.println("Available books in the library:");
+        for (Book b : library.getAvailableBooks()) {
+            System.out.println(b.getTitle());
+        }
     }
 }
+
